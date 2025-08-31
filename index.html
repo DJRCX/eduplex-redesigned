@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Hero Section</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: #0f1115;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .hero-content{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            max-width: 1200px;
+        }
+
+        .hero-content-left {
+            text-align: left;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .hero-content-right{
+            background: #292c32;
+            text-align: center;
+            padding: 20px;
+            width: 500px;
+            height: 210px;
+            border-radius: 25px;
+        }
+
+        .loader {
+            color: rgb(254, 252, 252);
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            font-size: 25px;
+            box-sizing: content-box;
+            height: 100px;
+            padding: 10px 10px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 8px;
+        }
+
+
+        .words{
+            position: relative;
+            overflow: hidden;
+        }
+
+        .word{
+            display: block;
+            padding-left: 6px;
+            line-height: 40px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            animation: spin 4s infinite;
+        }
+
+        @keyframes spin {
+            10%{
+                transform: translateY(-102%);
+            }
+
+            25%{
+                transform: translateY(-100%);
+            }
+
+            35%{
+                transform: translateY(-202%);
+            }
+
+            50%{
+                transform: translateY(-200%);
+            }
+
+            60%{
+                transform: translateY(-302%);
+            }
+
+            75%{
+                transform: translateY(-300%);
+            }
+            
+            85%{
+                transform: translateY(-402%);
+            }
+
+            100%{
+                transform: translateY(-400%);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #a0a0a0;
+            max-width: 600px;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            background: #6366f1;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #4f46e5;
+        }
+
+        .bg-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .bg-gradient {
+            position: absolute;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, rgba(15,17,21,0) 70%);
+            border-radius: 50%;
+        }
+
+        #gradient1 { top: -60%; left: -40%; }
+        #gradient2 { bottom: -60%; right: -40%; }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 20px); }
+            100% { transform: translate(0, 0); }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="bg-animation">
+            <div class="bg-gradient" id="gradient1"></div>
+            <div class="bg-gradient" id="gradient2"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-content-left">
+                <h1>See everything.<br>Fix anything.</h1>
+                <p>AI-native platform for on-call and incident response with effortless monitoring, status pages, tracing, infrastructure monitoring and log management.</p>
+            </div>
+            <div class="hero-content-right">
+            <div class="loader">
+                <p>Sign in to get access to more features like:</p>
+                    <div class="words">
+                        <span class="word">And Many More...</span>
+                        <span class="word">Study Materials</span>
+                        <span class="word">Question Bank</span>
+                        <span class="word">Class Routines</span>
+                        <span class="word">And Many More...</span>
+                    </div>
+            </div>
+                <script src="https://accounts.google.com/gsi/client" async defer></script>
+                <div id="g_id_onload"
+                    data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                    data-login_uri="https://eduplex.unleft.space/auth/callback"
+                    data-auto_prompt="false">
+                </div>
+                <div class="g_id_signin" data-type="standard"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const gradients = document.querySelectorAll('.bg-gradient');
+        
+        gradients.forEach((gradient, index) => {
+            gradient.style.animation = `float 15s infinite ease-in-out ${index * 2}s`;
+        });
+
+        // Trigger animations when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.hero-content').style.animation = 'fadeIn 1s ease forwards';
+        });
+    </script>
+</body>
+</html>
